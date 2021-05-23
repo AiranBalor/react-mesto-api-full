@@ -1,5 +1,10 @@
 const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
 const AuthtorizationError = require('../errors/AuthtorizationError');
+
+dotenv.config();
+
+const { NODE_ENV, JWT_SECRET } = process.env;
 
 const auth = (req, res, next) => {
   const { authorization } = req.headers;
@@ -12,7 +17,7 @@ const auth = (req, res, next) => {
   let payload;
 
   try {
-    payload = jwt.verify(token, 'no-secret-key');
+    payload = jwt.verify(token, `${NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret'}`);
   } catch (err) {
     throw new AuthtorizationError('Необходима авторизация');
   }

@@ -5,14 +5,14 @@ const NotFoundError = require('../errors/NotFoundError');
 
 module.exports.getCards = (req, res, next) => {
   Card.find({})
-    .then((cardsData) => res.send(cardsData))
+    .then((cardsData) => res.status(200).send(cardsData))
     .catch(next);
 };
 
 module.exports.createCard = (req, res, next) => {
   const { name, link } = req.body;
   Card.create({ name, link, owner: req.user._id })
-    .then((card) => res.send({ data: card }))
+    .then((card) => res.status(200).send({ data: card }))
     .catch(() => {
       throw new ValidationError('Переданы неверные данные при создании карточки');
     })

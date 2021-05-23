@@ -1,4 +1,4 @@
-const mainErrorshHandler = (err, req, res, next) => {
+const mainErrorsHandler = (err, req, res, next) => {
   const {
     statusCode = 500,
     message,
@@ -10,4 +10,4 @@ const mainErrorshHandler = (err, req, res, next) => {
   next();
 };
 
-module.exports = mainErrorshHandler;
+module.exports = mainErrorsHandler;

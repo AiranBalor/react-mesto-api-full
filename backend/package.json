@@ -1,8 +1,8 @@
 {
-  "name": "mesto-express",
+  "name": "mesto-full-api",
   "version": "1.0.0",
-  "description": "Проектная работа 13 спринта по созданию сервера с помощью Node.js(Express)",
-  "main": "index.js",
+  "description": "Проектная работа 15 спринта по деплою фронтенда и бекенда на удаленный сервер",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
@@ -30,6 +30,8 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "celebrate": "^14.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-rate-limit": "^5.2.6",
     "express-winston": "^4.1.0",

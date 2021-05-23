@@ -14,6 +14,7 @@ import Login from "./Login";
 import Register from "./Register";
 import ProtectedRoute from "./ProtectedRoute";
 import InfoTooltip from "./InfoTooltip";
+import defaultAvatar from '../images/profile-avatar.jpg';
 import successIcon from "../images/success-icon.svg";
 import failureIcon from "../images/failure-icon.svg";
 import * as auth from "../utils/auth.js";
@@ -31,11 +32,17 @@ function App() {
   );
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState({});
   const [isImagePopupOpen, setImagePopupOpen] = React.useState(false);
-  const [currentUser, setCurrentUser] = React.useState({});
-  const [cards, setCards] = React.useState([]);
   const [isInfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState({});
+  const [currentUser, setCurrentUser] = React.useState({
+    name: 'Жак Ив-Кусто',
+    about: 'Исследователь',
+    email: '',
+    avatar: defaultAvatar
+  });
+  const [cards, setCards] = React.useState([]);
+
   const history = useHistory();
 
   function handleEditProfileClick() {
@@ -187,8 +194,7 @@ function App() {
         });
         setInfoTooltipOpen(true);
       })
-      .catch((err) => {
-        console.error(err);
+      .catch(() => {
         setMessage({
           icon: failureIcon,
           text: "Что-то пошло не так! Попробуйте ещё раз.",

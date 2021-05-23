@@ -26,7 +26,10 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify(userData),
+      body: JSON.stringify({
+        name: userData.name,
+        about: userData.about
+      }),
     }).then(handleOriginalResponse);
   }
 
@@ -34,7 +37,10 @@ class Api {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
-      body: JSON.stringify(cardData),
+      body: JSON.stringify({
+        name: cardData.name,
+        link: cardData.link
+      }),
     }).then(handleOriginalResponse);
   }
 
@@ -46,7 +52,7 @@ class Api {
   }
 
   changeLikeCardStatus(cardId, status) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: (status) ? "PUT" : "DELETE",
       headers: this._headers,
     }).then(handleOriginalResponse);
@@ -56,15 +62,17 @@ class Api {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify(avatarLink),
+      body: JSON.stringify({
+        avatar: avatarLink
+      }),
     }).then(handleOriginalResponse);
   }
 }
 
 const api = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-20",
+  baseUrl: "https://balor.nomoredomains.club",
   headers: {
-    authorization: "8e6db405-93d3-4564-862a-de4e30ec51f5",
+    authorization: `Bearer ${localStorage.getItem('jwt')}`,
     "Content-Type": "application/json",
   },
 });

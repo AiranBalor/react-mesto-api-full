@@ -17,7 +17,10 @@ function Login({ onLogin }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    let { email, password } = data;
+    const { email, password } = data;
+    if (!password || !email) {
+      return;
+    }
     onLogin(email, password);
   }
 

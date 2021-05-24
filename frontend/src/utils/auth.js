@@ -1,5 +1,5 @@
 import handleOriginalResponse from "./utils";
-const BASE_URL = "api.balor.nomoredomains.club";
+const BASE_URL = "https://api.balor.nomoredomains.club";
 
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {

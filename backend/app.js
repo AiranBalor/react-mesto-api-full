@@ -38,7 +38,9 @@ const limiter = rateLimit({
 app.use(cors({
   origin: true,
   credentials: true,
+  exposedHeaders: '*',
 }));
+
 app.use(express.json());
 
 app.use(limiter);

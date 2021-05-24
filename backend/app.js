@@ -36,7 +36,7 @@ const limiter = rateLimit({
 });
 
 app.use(cors({
-  origin: 'https://balor.nomoredomains.club',
+  origin: true,
   credentials: true,
 }));
 app.use(express.json());

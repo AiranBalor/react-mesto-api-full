@@ -139,7 +139,7 @@ function App() {
       auth
         .getContent(jwt)
         .then((data) => {
-          setEmail(data.data.email);
+          setEmail(data.email);
           setLoggedIn(true);
           history.push("/");
         })

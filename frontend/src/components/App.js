@@ -163,8 +163,7 @@ function App() {
         setLoggedIn(true);
         history.push("/");
       })
-      .catch((err) => {
-        console.error(err);
+      .catch(() => {
         setMessage({
           icon: failureIcon,
           text: "Что-то пошло не так! Попробуйте ещё раз.",

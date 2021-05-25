@@ -11,7 +11,7 @@ dotenv.config();
 const { PORT = 3000 } = process.env;
 
 const app = express();
-app.disable('x-powered-by');
+
 const cardsRouter = require('./routes/cards');
 const usersRouter = require('./routes/users');
 const { login, createUser } = require('./controllers/users');

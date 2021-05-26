@@ -1,5 +1,4 @@
 import handleOriginalResponse from './utils';
-const token = localStorage.getItem('jwt');
 
 class Api {
   constructor(options) {
@@ -9,19 +8,13 @@ class Api {
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
-      headers: {
-        ...this._headers,
-        аuthorization: `Bearer ${token}`,
-      } 
+      headers: this._headers,
     }).then(handleOriginalResponse);
   }
 
   getUserInfoFromServer() {
     return fetch(`${this._baseUrl}/users/me`, {
-      headers: {
-        ...this._headers,
-        аuthorization: `Bearer ${token}`,
-      }
+      headers: this._headers,
     }).then(handleOriginalResponse);
   }
 
@@ -32,10 +25,7 @@ class Api {
   updateUserInfo(userData) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      headers: {
-        ...this._headers,
-        аuthorization: `Bearer ${token}`,
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: userData.name,
         about: userData.about
@@ -46,10 +36,7 @@ class Api {
   sendNewCard(cardData) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
-      headers: {
-        ...this._headers,
-        аuthorization: `Bearer ${token}`,
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: cardData.name,
         link: cardData.link
@@ -60,30 +47,21 @@ class Api {
   deleteCardFromServer(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
-      headers: {
-        ...this._headers,
-        аuthorization: `Bearer ${token}`,
-      },
+      headers: this._headers,
     }).then(handleOriginalResponse);
   }
 
   changeLikeCardStatus(cardId, status) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: (status) ? "PUT" : "DELETE",
-      headers: {
-        ...this._headers,
-        аuthorization: `Bearer ${token}`,
-      },
+      headers: this._headers,
     }).then(handleOriginalResponse);
   }
 
   updateAvatar(avatarLink) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
-      headers: {
-        ...this._headers,
-        аuthorization: `Bearer ${token}`,
-      },
+      headers: this._headers,
       body: JSON.stringify({
         avatar: avatarLink
       }),
@@ -94,7 +72,7 @@ class Api {
 const api = new Api({
   baseUrl: "https://api.balor.nomoredomains.club",
   headers: {
-    аuthorization: `Bearer ${token}`,
+    "Authorization": `Bearer ${localStorage.getItem('jwt')}`,
     "Content-Type": "application/json",
   },
 });

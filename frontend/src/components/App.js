@@ -42,6 +42,7 @@ function App() {
     avatar: defaultAvatar
   });
   const [cards, setCards] = React.useState([]);
+  const [userInfo, updateUserInfo] = React.useState(false);
 
   const history = useHistory();
 
@@ -130,18 +131,11 @@ function App() {
         .then(([userInfo, cardsInfo]) => {
           setCurrentUser(userInfo);
           setCards(cardsInfo);
+          updateUserInfo(true);
         })
         .catch((err) => console.log(err));
     }
-  }, [loggedIn]);
-
-  React.useEffect(() => {
-    api
-      .getUserInfoFromServer()
-      .then(userData => {
-        setCurrentUser(userData);
-      })
-  }, []);
+  }, [loggedIn, userInfo]);
 
   React.useEffect(() => {
     const jwt = localStorage.getItem("jwt");

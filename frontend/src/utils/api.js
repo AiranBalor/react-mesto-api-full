@@ -8,7 +8,9 @@ class Api {
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
-      headers: this._headers,
+      headers: { ...this._headers, 
+        "Authorization": `Bearer ${localStorage.getItem('jwt')}`
+      }
     }).then(handleOriginalResponse);
   }
 

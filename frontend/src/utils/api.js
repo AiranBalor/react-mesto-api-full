@@ -1,4 +1,5 @@
 import handleOriginalResponse from './utils';
+const token = localStorage.getItem('jwt');
 
 class Api {
   constructor(options) {
@@ -72,7 +73,7 @@ class Api {
 const api = new Api({
   baseUrl: "https://api.balor.nomoredomains.club",
   headers: {
-    "Authorization": `Bearer ${localStorage.getItem('jwt')}`,
+    "Authorization": `Bearer ${token}`,
     "Content-Type": "application/json",
   },
 });

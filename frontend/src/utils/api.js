@@ -11,7 +11,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards`, {
       headers: {
         ...this._headers,
-        "Authorization": `Bearer ${token}`,
+        аuthorization: `Bearer ${token}`,
       } 
     }).then(handleOriginalResponse);
   }
@@ -20,7 +20,7 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: {
         ...this._headers,
-        "Authorization": `Bearer ${token}`,
+        аuthorization: `Bearer ${token}`,
       }
     }).then(handleOriginalResponse);
   }
@@ -34,7 +34,7 @@ class Api {
       method: "PATCH",
       headers: {
         ...this._headers,
-        "Authorization": `Bearer ${token}`,
+        аuthorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         name: userData.name,
@@ -48,7 +48,7 @@ class Api {
       method: "POST",
       headers: {
         ...this._headers,
-        "Authorization": `Bearer ${token}`,
+        аuthorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         name: cardData.name,
@@ -62,7 +62,7 @@ class Api {
       method: "DELETE",
       headers: {
         ...this._headers,
-        "Authorization": `Bearer ${token}`,
+        аuthorization: `Bearer ${token}`,
       },
     }).then(handleOriginalResponse);
   }
@@ -72,7 +72,7 @@ class Api {
       method: (status) ? "PUT" : "DELETE",
       headers: {
         ...this._headers,
-        "Authorization": `Bearer ${token}`,
+        аuthorization: `Bearer ${token}`,
       },
     }).then(handleOriginalResponse);
   }
@@ -82,7 +82,7 @@ class Api {
       method: "PATCH",
       headers: {
         ...this._headers,
-        "Authorization": `Bearer ${token}`,
+        аuthorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         avatar: avatarLink
@@ -94,7 +94,7 @@ class Api {
 const api = new Api({
   baseUrl: "https://api.balor.nomoredomains.club",
   headers: {
-    "Authorization": `Bearer ${token}`,
+    аuthorization: `Bearer ${token}`,
     "Content-Type": "application/json",
   },
 });

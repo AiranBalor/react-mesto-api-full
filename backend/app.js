@@ -30,8 +30,8 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 });
 
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 1000,
+  windowMs: 5 * 60 * 1000,
+  max: 10000,
   message: 'Слишком много запросов к серверу, пожалуйста, подождите 15 минут',
 });
 

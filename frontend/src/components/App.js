@@ -80,9 +80,9 @@ function App() {
       .catch((err) => console.log(err));
   }
 
-  function handleUpdateAvatar(avatarLink) {
+  function handleUpdateAvatar({avatar}) {
     api
-      .updateAvatar(avatarLink)
+      .updateAvatar(avatar)
       .then((link) => {
         setCurrentUser(link);
         closeAllPopups();

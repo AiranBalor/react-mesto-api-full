@@ -87,7 +87,6 @@ function App() {
         console.log(newData);
         setCurrentUser(newData);
         console.log(currentUser);
-        setLoggedIn(true);
         closeAllPopups();
       })
       .catch((err) => console.log(err));
@@ -134,7 +133,7 @@ function App() {
         })
         .catch((err) => console.log(err));
     }
-  }, [loggedIn]);
+  });
 
   React.useEffect(() => {
     const jwt = localStorage.getItem("jwt");

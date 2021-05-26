@@ -84,7 +84,8 @@ function App() {
     api
       .updateAvatar(avatar)
       .then((link) => {
-        setCurrentUser({avatar: link});
+        setCurrentUser(link);
+        console.log(currentUser);
         closeAllPopups();
       })
       .catch((err) => console.log(err));

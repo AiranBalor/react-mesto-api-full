@@ -133,7 +133,15 @@ function App() {
         })
         .catch((err) => console.log(err));
     }
-  }, [loggedIn, currentUser]);
+  }, [loggedIn]);
+
+  React.useEffect(() => {
+    api
+      .getUserInfoFromServer()
+      .then(userData => {
+        setCurrentUser(userData);
+      })
+  }, [currentUser]);
 
   React.useEffect(() => {
     const jwt = localStorage.getItem("jwt");

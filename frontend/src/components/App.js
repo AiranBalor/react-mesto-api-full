@@ -128,9 +128,7 @@ function App() {
       api
         .getAllInfo()
         .then(([userInfo, cardsInfo]) => {
-          console.log(userInfo);
           setCurrentUser(userInfo);
-          console.log(currentUser);
           setCards(cardsInfo);
         })
         .catch((err) => console.log(err));

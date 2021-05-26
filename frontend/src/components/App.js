@@ -83,9 +83,9 @@ function App() {
   function handleUpdateAvatar({avatar}) {
     api
       .updateAvatar(avatar)
-      .then((data) => {
-        console.log(data);
-        setCurrentUser({avatar: data.avatar});
+      .then((newData) => {
+        console.log(newData);
+        setCurrentUser(newData);
         console.log(currentUser);
         closeAllPopups();
       })
@@ -128,7 +128,9 @@ function App() {
       api
         .getAllInfo()
         .then(([userInfo, cardsInfo]) => {
-          setCurrentUser({...userInfo});
+          console.log(userInfo);
+          setCurrentUser(userInfo);
+          console.log(currentUser);
           setCards(cardsInfo);
         })
         .catch((err) => console.log(err));

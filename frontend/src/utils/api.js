@@ -14,7 +14,9 @@ class Api {
 
   getUserInfoFromServer() {
     return fetch(`${this._baseUrl}/users/me`, {
-      headers: this._headers,
+      headers: { ...this._headers, 
+        "Authorization": `Bearer ${localStorage.getItem('jwt')}`
+      }
     }).then(handleOriginalResponse);
   }
 

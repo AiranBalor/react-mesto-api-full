@@ -85,7 +85,7 @@ function App() {
       .updateAvatar(avatar)
       .then((data) => {
         console.log(data);
-        setCurrentUser({...data});
+        setCurrentUser(data);
         console.log(currentUser);
         closeAllPopups();
       })

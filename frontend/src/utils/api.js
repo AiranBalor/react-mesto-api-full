@@ -29,7 +29,9 @@ class Api {
   updateUserInfo(userData) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: { ...this._headers, 
+        "Authorization": `Bearer ${localStorage.getItem('jwt')}`
+      },
       body: JSON.stringify({
         name: userData.name,
         about: userData.about
@@ -40,7 +42,9 @@ class Api {
   sendNewCard(cardData) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
-      headers: this._headers,
+      headers: { ...this._headers, 
+        "Authorization": `Bearer ${localStorage.getItem('jwt')}`
+      },
       body: JSON.stringify({
         name: cardData.name,
         link: cardData.link
@@ -51,21 +55,27 @@ class Api {
   deleteCardFromServer(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: { ...this._headers, 
+        "Authorization": `Bearer ${localStorage.getItem('jwt')}`
+      },
     }).then(handleOriginalResponse);
   }
 
   changeLikeCardStatus(cardId, status) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: (status) ? "PUT" : "DELETE",
-      headers: this._headers,
+      headers: { ...this._headers, 
+        "Authorization": `Bearer ${localStorage.getItem('jwt')}`
+      },
     }).then(handleOriginalResponse);
   }
 
   updateAvatar(avatarLink) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: { ...this._headers, 
+        "Authorization": `Bearer ${localStorage.getItem('jwt')}`
+      },
       body: JSON.stringify({
         avatar: avatarLink
       }),

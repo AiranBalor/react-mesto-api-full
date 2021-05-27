@@ -84,16 +84,14 @@ function App() {
     api
       .updateAvatar(avatar)
       .then((newData) => {
-        console.log(newData);
         setCurrentUser(newData);
-        console.log(currentUser);
         closeAllPopups();
       })
       .catch((err) => console.log(err));
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
     api
       .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
@@ -133,7 +131,7 @@ function App() {
         })
         .catch((err) => console.log(err));
     }
-  });
+  }, [loggedIn]);
 
   React.useEffect(() => {
     const jwt = localStorage.getItem("jwt");
@@ -145,8 +143,8 @@ function App() {
           setLoggedIn(true);
           history.push("/");
         })
-        .catch((err) => {
-          console.error(err);
+        .catch(() => {
+          localStorage.removeItem("jwt");
           setMessage({
             icon: failureIcon,
             text: "Что-то пошло не так! Попробуйте ещё раз.",

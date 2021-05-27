@@ -97,7 +97,7 @@ module.exports.updateUser = (req, res, next) => {
       throw error;
     })
     .then((user) => {
-      res.status(200).send({ data: user });
+      res.status(200).send(user);
     })
     .catch((err) => {
       if (err.name === 'ValidationError' || err.name === 'CastError') {
@@ -116,7 +116,7 @@ module.exports.updateAvatar = (req, res, next) => {
       throw error;
     })
     .then((user) => {
-      res.send({ data: user });
+      res.send(user);
     })
     .catch((err) => {
       if (err.name === 'ValidationError' || err.name === 'CastError') {

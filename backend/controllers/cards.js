@@ -12,7 +12,7 @@ module.exports.getCards = (req, res, next) => {
 module.exports.createCard = (req, res, next) => {
   const { name, link } = req.body;
   Card.create({ name, link, owner: req.user._id })
-    .then((card) => res.status(200).send({ data: card }))
+    .then((card) => res.status(200).send(card))
     .catch(() => {
       throw new ValidationError('Переданы неверные данные при создании карточки');
     })
@@ -48,7 +48,7 @@ module.exports.likeCard = (req, res, next) => {
       const error = new Error('NotFound');
       throw error;
     })
-    .then((likes) => res.send({ data: likes }))
+    .then((likes) => res.send(likes))
     .catch((err) => {
       if (err.message === 'NotFound') {
         throw new NotFoundError(err.message);
@@ -66,7 +66,7 @@ module.exports.dislikeCard = (req, res, next) => {
       const error = new Error('NotFound');
       throw error;
     })
-    .then((likes) => res.send({ data: likes }))
+    .then((likes) => res.send(likes))
     .catch((err) => {
       if (err.message === 'NotFound') {
         throw new NotFoundError(err.message);
